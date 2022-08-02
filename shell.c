@@ -36,6 +36,7 @@ int main(int __attribute__((unused)) argc, char **argv,
             free(argv);
             return (1);
         }
+
         pid = fork();
 
         if (pid == -1)
@@ -54,6 +55,10 @@ int main(int __attribute__((unused)) argc, char **argv,
                 free(argv);
                 continue;
             }
+	    if (_strchr(argv[0], '/') == NULL)
+	    {
+		    argv[0] = _path(argv[0]);
+	    }
             if (execve(argv[0], argv, envp) == -1)
             {
                 perror("Error");
