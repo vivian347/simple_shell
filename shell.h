@@ -23,7 +23,7 @@ char **_parse(char *buff);
 unsigned int _strlen(const char *s);
 char *_strcat(char *str1, char *str2);
 char *_strncat(char *str1, char *str2, int n);
-char _path(char *com);
-// void print_env(void);
+char *_path(char *com);
+char *_strchr(char *s, int c);
 
 #endif
