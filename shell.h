@@ -21,5 +21,18 @@ int get_len(const char *s);
 char *cpy_str(char *str1, const char *str2);
 char *cat_str(char *str1, const char *str2);
 char *ncat_str(char *str1, const char *str1, size_t n);
+char *strchr_fnc(char *s, char c);
+int initlen_sub(char *s, char *acc);
+int cmp(char *str1, char *str2);
+int ncmp(const char *str1, const char *str2m size_t n);
+void h_all(void);
+void h_alias(void);
+void h_cd(void);
+void h_exit(void);
+void h_help(void);
+void h_env(void);
+void h_setenv(void);
+void h_unsetenv(void);
+
 
 #endif
