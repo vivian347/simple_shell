@@ -17,7 +17,7 @@ char **parse(char *buffer, char *del)
     while (str != NULL)
     {
         argv[i] = str;
-        /*printf("argv[%d] %s\n", i, argv[i]);*/
+        printf("argv[%d] %s\n", i, argv[i]);
         i++;
         str = strtok(NULL, del);
     }

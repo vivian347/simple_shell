@@ -71,7 +71,7 @@ int main(int __attribute__((unused))argc, char **argv, char **envp)
             while (str != NULL)
             {
                 pth[i] = str;
-                /*printf("argv[%d] %s\n", i, pth[i]);*/
+                printf("argv[%d] %s\n", i, pth[i]);
                 i++;
                 str = strtok(NULL, del);
             }
