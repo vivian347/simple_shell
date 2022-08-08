@@ -7,10 +7,19 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <sys/types.h>
+#include <sys/stat.h>
 
-int cmp(char *str1, char *str2);
-char **parse(char *buffer, char *del);
-char *_path(char *cmd);
-char *concat(char *s1, char *s2);
+int alias_shell(char **args, char _attribute((unused_)) **start);
+void alias_prt(alias_t *alias);
+char *alias_rep(char **args);
+void al_set(char *name, char *val);
+int _exit(char **args, char **start);
+int help(char **args, char __attribute((unused_)) **start);
+int cd(char **args, char __attribute((unused_)) **start);
+int (*getcmd_builtin(char *cmd))(char **args, char **start);
+int get_len(const char *s);
+char *cpy_str(char *str1, const char *str2);
+char *cat_str(char *str1, const char *str2);
+char *ncat_str(char *str1, const char *str1, size_t n);
 
-#endif 
+#endif
