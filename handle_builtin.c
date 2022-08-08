@@ -108,21 +108,21 @@ int _cd(char **args, char __attribute__((__unused__)) **start)
 int _help(char **args, char __attribute__((__unused__)) **start)
 {
     if (!args[0])
-        help_cmds();
+        h_all();
     else if (cmp(args[0], "alias") == 0)
-        help_alias();
+        h_alias();
     else if (cmp(args[0], "cd") == 0)
-        help_cd();
+        h_cd();
     else if (cmp(args[0], "exit") == 0)
-        help_exit();
+        h_exit();
     else if (cmp(args[0], "help") == 0)
-        help_help();
+        h_help();
     else if (cmp(args[0], "env") == 0)
-        help_env();
+        h_env();
     else if (cmp(args[0], "setenv") == 0)
-        help_setenv();
+        h_setenv();
     else if (cmp(args[0], "unsetenv") == 0)
-        help_unsetenv();
+        h_unsetenv();
     else
         write(STDERR_FILENO, name, get_len(name));
     return (0);

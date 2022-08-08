@@ -33,6 +33,12 @@ void h_help(void);
 void h_env(void);
 void h_setenv(void);
 void h_unsetenv(void);
+int _env(char **args, char __attribute__((__unused__)) **start);
+int _setenv(char **args, char __attribute__((__unused__)) **start);
+int _unsetenv(char **args, char __attribute__((__unused__)) **start);
+char **getenv_fnc(const char *env_var);
+char **env_cpy(void);
+void free_env(void);
 
 
 #endif
