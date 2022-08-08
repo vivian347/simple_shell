@@ -39,6 +39,10 @@ int _unsetenv(char **args, char __attribute__((__unused__)) **start);
 char **getenv_fnc(const char *env_var);
 char **env_cpy(void);
 void free_env(void);
+char *get_val(char *env, int len);
+void free_args(char **args, char **start);
+char *_pid(void);
+void rep_var(char **args, int *ret);
 
 
 #endif
