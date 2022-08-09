@@ -56,6 +56,21 @@ int create_err(char **arg, int error);
 void *_realloc(void *p, unsigned int o_size, unsigned int n_size);
 void _lineptr(char **lineptr, size_t *n, char *buf, size_t b);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
+ssize_t new_len(char *arg);
+void log_oper(char *ptr, ssize_t *ptr_new);
+void split_line(char **ptr, ssize_t len);
+int *fetch_cmd(char *buff, int *ret);
+int cmd_handler(int *ret);
+int exec_cmd(char **args, char **start, int *ret);
+int check_cmd(char **args);
+int arg_call(char **args, char **start, int *ret);
+char **strtok_fnc(char *str, char *del);
+int len_tok(char *str, char *del);
+int tok_count(char *str, char *del);
+void free_list(list_t *ptr);
+void aliaslist_free(alias_t *ptr);
+list_t *endnode_add(list_t **head, char *dir);
+alias_t *endalias_add(alias_t **head, char *identifier, char *val);
 
 
 #endif
