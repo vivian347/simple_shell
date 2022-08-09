@@ -43,6 +43,13 @@ char *get_val(char *env, int len);
 void free_args(char **args, char **start);
 char *_pid(void);
 void rep_var(char **args, int *ret);
+char *e_env(char **arg);
+char *e_1(char **arg);
+char *e_2_exit(char **arg);
+char *e_2_cd(char **arg);
+char *e_2_syntax(char **arg);
+char *e_126(char **arg);
+char *e_127(char **arg);
 
 
 #endif
