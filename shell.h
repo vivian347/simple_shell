@@ -50,6 +50,12 @@ char *e_2_cd(char **arg);
 char *e_2_syntax(char **arg);
 char *e_126(char **arg);
 char *e_127(char **arg);
+int dig_len(int n);
+char *itoa_fnc(int n);
+int create_err(char **arg, int error);
+void *_realloc(void *p, unsigned int o_size, unsigned int n_size);
+void _lineptr(char **lineptr, size_t *n, char *buf, size_t b);
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 
 
 #endif
