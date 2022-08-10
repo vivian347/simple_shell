@@ -8,6 +8,42 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <fcntl.h>
+#include <signal.h>
+#include <errno.h>
+
+#define END_OF_FILE -2
+#define EXIT -3
+
+extern char **environ;
+char *name;
+int hist;
+
+/**
+ * struct list_s - A new struct type defining a linked list.
+ * @dir: A directory path.
+ * @next: A pointer to another struct list_s.
+ */
+typedef struct list_s
+{
+	char *dir;
+	struct list_s *next;
+} list_t;
+
+/**
+ * struct alias_s - A new struct defining aliases.
+ * @name: The name of the alias.
+ * @value: The value of the alias.
+ * @next: A pointer to another struct alias_s.
+ */
+typedef struct alias_s
+{
+	char *name;
+	char *value;
+	struct alias_s *next;
+} alias_t;
+
+alias_t *aliases;
 
 int alias_shell(char **args, char _attribute((unused_)) **start);
 void alias_prt(alias_t *alias);
@@ -71,6 +107,14 @@ void free_list(list_t *ptr);
 void aliaslist_free(alias_t *ptr);
 list_t *endnode_add(list_t **head, char *dir);
 alias_t *endalias_add(alias_t **head, char *identifier, char *val);
+char *_loc(char *cmd);
+char *fill_path(char *path);
+list_t *get_path(char *path);
+void _signal(int sig);
+int _exec(char **arg, char **start);
+int cant_open(char *_path);
+int proc_cmd(char *_path, int *exe_ret);
+
 
 
 #endif
