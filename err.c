@@ -69,7 +69,7 @@ char *itoa_fnc(int n)
 	return (buf);
 }
 
-int create_err(char *arg, int error)
+int create_err(char **arg, int error)
 {
 	char *err;
 

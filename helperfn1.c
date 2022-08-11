@@ -3,7 +3,7 @@
 int get_len(const char *s);
 char *cpy_str(char *str1, const char *str2);
 char *cat_str(char *str1, const char *str2);
-char *ncat_str(char *str1, const char *str1, size_t n);
+char *ncat_str(char *str1, const char *str2, size_t n);
 
 
 /**

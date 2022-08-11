@@ -1,6 +1,6 @@
 #include "shell.h"
 
-int _exit(char **args, char **start);
+int exit_fn(char **args, char **start);
 int _help(char **args, char __attribute__((__unused__)) **start);
 int _cd(char **args, char __attribute__((__unused__)) **start);
 int (*getcmd_builtin(char *cmd))(char **args, char **start);
@@ -13,14 +13,14 @@ int (*getcmd_builtin(char *cmd))(char **args, char **start);
 int (*getcmd_builtin(char *cmd))(char **args, char **start)
 {
     int i;
-    builtintcmds_t funcs[] = {
-        {"exit", _exit},
+    builtin_t funcs[] = {
+        {"exit", exit_fn},
         {"cd", _cd},
         {"help", _help},
         {"env", _env},
         {"setenv", _setenv},
         {"unsetenv", _unsetenv},
-        {"alias", _alias},
+        {"alias", alias_shell},
         {NULL, NULL}
     };
 
@@ -84,6 +84,9 @@ int _cd(char **args, char __attribute__((__unused__)) **start)
     new_pwd = getcwd(new_pwd, 0);
     if (!new_pwd)
         return (-1);
+    dir = malloc(sizeof(char *) * 2);
+    if (!dir)
+        return (-1);
     dir[0] = "OLDPWD";
     dir[1] = new_pwd;
     if (_setenv(dir, dir) == -1)
@@ -136,7 +139,7 @@ int _help(char **args, char __attribute__((__unused__)) **start)
  * -2 on invalid exit value
  * -3 if no args are passed
  */
-int _exit(char **args, char **start)
+int exit_fn(char **args, char **start)
 {
     int i, int_len = 10;
     unsigned int val = 0;
@@ -167,6 +170,6 @@ int _exit(char **args, char **start)
     args -= 1;
     free_args(args, start);
     free_env();
-    free_alias(aliases);
+    aliaslist_free(aliases);
     exit(val);
 }

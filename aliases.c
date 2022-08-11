@@ -2,7 +2,7 @@
 
 int alias_shell(char **args, char __attribute__((__unused__)) **start);
 void alias_prt(alias_t *alias);
-char *alias_rep(char **args);
+char **alias_rep(char **args);
 void al_set(char *name, char *val);
 
 /**
@@ -85,7 +85,7 @@ void al_set(char *name, char *val)
         ptr = ptr->next;
     }
     if (!ptr)
-        end_al(&aliases, name, val_new);
+        endalias_add(&aliases, name, val_new);
 }
 
 /**
@@ -109,7 +109,7 @@ void alias_prt(alias_t *alias)
     free(ptr);
 }
 
-char *alias_rep(char **args)
+char **alias_rep(char **args)
 {
     int i;
     char *val_new;

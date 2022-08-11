@@ -57,7 +57,8 @@ void free_args(char **args, char **start)
  */
 char *_pid(void)
 {
-    size_t f, i = 0;
+    size_t i = 0;
+    ssize_t f;
     char *buff;
 
     f = open("proc/self/stat", O_RDONLY);
@@ -67,7 +68,7 @@ char *_pid(void)
         return (NULL);
     }
     buff = malloc(120);
-    if (!buffer)
+    if (!buff)
     {
         close(f);
         return (NULL);
@@ -117,12 +118,12 @@ void rep_var(char **args, int *ret)
                 len = j - (i + 1);
                 rep = get_val(&line[i + 1], len);
             }
-            line_new = malloc(i _ get_len(rep)
+            line_new = malloc(i + get_len(rep)
                 + get_len(&line[j]) + 1);
             if (!line)
                 return;
             line_new[0] = '\0';
-            ncat_str(line_new, line, k);
+            ncat_str(line_new, line, j);
             if (rep)
             {
                 cat_str(line_new, rep);

@@ -14,7 +14,7 @@ void free_list(list_t *ptr)
 {
     list_t *n;
 
-    while (head)
+    while (ptr)
     {
         n = ptr->next;
         free(ptr->dir);
@@ -34,7 +34,7 @@ void aliaslist_free(alias_t *ptr)
 
     while (ptr)
     {
-        n = ptr->n;
+        n = ptr->next;
         free(ptr->name);
         free(ptr->value);
         free(ptr);
@@ -85,7 +85,7 @@ alias_t *endalias_add(alias_t **head, char *identifier, char *val)
 		return (NULL);
 
 	node->next = NULL;
-	node->name = malloc(sizeof(char) * (_strlen(name) + 1));
+	node->name = malloc(sizeof(char) * (get_len(name) + 1));
 	if (!node->name)
 	{
 		free(node);
@@ -98,7 +98,7 @@ alias_t *endalias_add(alias_t **head, char *identifier, char *val)
 	{
 		end = *head;
 		while (end->next != NULL)
-			end = last->next;
+			end = end->next;
 		end->next = node;
 	}
 	else

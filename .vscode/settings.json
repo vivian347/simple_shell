@@ -1,6 +1,7 @@
 {
   "C_Cpp.errorSquiggles": "Disabled",
   "files.associations": {
-    "print_env": "c"
+    "print_env": "c",
+    "shell.h": "c"
   }
 }

@@ -32,7 +32,7 @@ void free_env(void)
 
     for (i = 0; environ[i]; i++)
         free(environ[i]);
-        free(environ);
+    free(environ);
 }
 
 /**

@@ -31,6 +31,15 @@ typedef struct list_s
 } list_t;
 
 /**
+ * @brief 
+ * 
+ */
+typedef struct builtin_s
+{
+	char *name;
+	int (*f)(char **argv, char **start);
+} builtin_t;
+/**
  * struct alias_s - A new struct defining aliases.
  * @name: The name of the alias.
  * @value: The value of the alias.
@@ -45,22 +54,22 @@ typedef struct alias_s
 
 alias_t *aliases;
 
-int alias_shell(char **args, char _attribute((unused_)) **start);
+int alias_shell(char **args, char __attribute__((__unused__)) **start);
 void alias_prt(alias_t *alias);
-char *alias_rep(char **args);
+char **alias_rep(char **args);
 void al_set(char *name, char *val);
-int _exit(char **args, char **start);
-int help(char **args, char __attribute((unused_)) **start);
-int cd(char **args, char __attribute((unused_)) **start);
+int exit_fn(char **args, char **start);
+int help(char **args, char __attribute__((__unused__)) **start);
+int cd(char **args, char __attribute__((__unused__)) **start);
 int (*getcmd_builtin(char *cmd))(char **args, char **start);
 int get_len(const char *s);
 char *cpy_str(char *str1, const char *str2);
 char *cat_str(char *str1, const char *str2);
-char *ncat_str(char *str1, const char *str1, size_t n);
+char *ncat_str(char *str1, const char *str2, size_t n);
 char *strchr_fnc(char *s, char c);
 int initlen_sub(char *s, char *acc);
 int cmp(char *str1, char *str2);
-int ncmp(const char *str1, const char *str2m size_t n);
+int ncmp(const char *str1, const char *str2, size_t n);
 void h_all(void);
 void h_alias(void);
 void h_cd(void);

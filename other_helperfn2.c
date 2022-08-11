@@ -34,7 +34,7 @@ void split_line(char **ptr, ssize_t len)
             prev = line[i - 1];
             if (curr == ';')
             {
-                if (fol = ';' && prev != ' '
+                if (fol == ';' && prev != ' '
                     && prev != ';')
                 {
                     line_new[j++] = ' ';
@@ -86,11 +86,11 @@ void split_line(char **ptr, ssize_t len)
                 line_new[j++] = ' ';
             continue;
         }
-        line_new[j++] = line;
+        line_new[j++] = line[i];
     }
     line_new[j] = '\0';
     free(*ptr);
-    *ptr = line_new
+    *ptr = line_new;
 }
 
 /**
