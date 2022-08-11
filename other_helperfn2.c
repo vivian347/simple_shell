@@ -18,7 +18,7 @@ void split_line(char **ptr, ssize_t len)
     char prev, fol;
 
     len_new = new_len(*ptr);
-    if (len_new == read - 1)
+    if (len_new == len - 1)
         return;
     line_new = malloc(len_new + 1);
     if (!line_new)

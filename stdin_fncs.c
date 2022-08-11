@@ -1,6 +1,6 @@
 #include "shell.h"
 
-int *fetch_cmd(char *buff, int *ret);
+char *fetch_cmd(char *buff, int *ret);
 int cmd_handler(int *ret);
 int exec_cmd(char **args, char **start, int *ret);
 int check_cmd(char **args);
@@ -13,7 +13,7 @@ int arg_call(char **args, char **start, int *ret);
  * Return: pointer to cmd on success
  * NULL on failure
  */
-int *fetch_cmd(char *buff, int *ret)
+char *fetch_cmd(char *buff, int *ret)
 {
     char *out = "$ ";
     size_t i = 0;
@@ -28,7 +28,7 @@ int *fetch_cmd(char *buff, int *ret)
     {
         hist++;
         if (isatty(STDIN_FILENO))
-            write(STDOUT_FILENO, prompt, 2);
+            write(STDOUT_FILENO, out, 2);
         return (fetch_cmd(buff, ret));
     }
     buff[read - 1] = '\0';

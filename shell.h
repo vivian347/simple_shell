@@ -104,7 +104,7 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 ssize_t new_len(char *arg);
 void log_oper(char *ptr, ssize_t *ptr_new);
 void split_line(char **ptr, ssize_t len);
-int *fetch_cmd(char *buff, int *ret);
+char *fetch_cmd(char *buff, int *ret);
 int cmd_handler(int *ret);
 int exec_cmd(char **args, char **start, int *ret);
 int check_cmd(char **args);
