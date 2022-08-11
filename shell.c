@@ -56,7 +56,7 @@ int _exec(char **arg, char **start)
 		}
 		if (pid == 0)
 		{
-			execve(command, arg, environ);
+			execve(cmd, arg, environ);
 			if (errno == EACCES)
 				ret = (create_err(arg, 126));
 			free_env();
@@ -101,7 +101,7 @@ int main(int argc, char *argv[])
 	{
 		ret = proc_cmd(argv[1], exe_ret);
 		free_env();
-		free_alias(aliases);
+		aliaslist_free(aliases);
 		return (*exe_ret);
 	}
 	if (!isatty(STDIN_FILENO))

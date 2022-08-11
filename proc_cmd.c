@@ -61,7 +61,7 @@ int proc_cmd(char *_path, int *exe_ret)
 	file = open(_path, O_RDONLY);
 	if (file == -1)
 	{
-		*exe_ret = cant_open(fill_path);
+		*exe_ret = cant_open(_path);
 		return (*exe_ret);
 	}
 	line = malloc(sizeof(char) * o_size);
@@ -84,7 +84,7 @@ int proc_cmd(char *_path, int *exe_ret)
 	{
 		if (line[i] == '\n')
 		{
-			line[i] = ";";
+			line[i] = ';';
 			for (i += 1; i < l_size && line[i] == '\n'; i++)
 				line[i] = ' ';
 		}
