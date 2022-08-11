@@ -19,7 +19,7 @@ int cant_open(char *_path)
 
 	if (!hist_str)
 	{
-		return(127);
+		return (127);
 	}
 	len = get_len(name) + get_len(hist_str) + get_len(_path) + 16;
 	err = malloc(sizeof(char) * (len + 1));
@@ -57,12 +57,11 @@ int proc_cmd(char *_path, int *exe_ret)
 	char buf[120];
 	int ret;
 
-
 	hist = 0;
 	file = open(_path, O_RDONLY);
 	if (file == -1)
 	{
-		*exe_ret = cant_open(file_path);
+		*exe_ret = cant_open(fill_path);
 		return (*exe_ret);
 	}
 	line = malloc(sizeof(char) * o_size);
@@ -71,8 +70,8 @@ int proc_cmd(char *_path, int *exe_ret)
 	do
 	{
 		b_read = read(file, buf, 119);
-		if (b_read == 0 && l_size == 0);
-		return (*exe_ret);
+		if (b_read == 0 && l_size == 0)
+			return (*exe_ret);
 		buf[b_read] = '\0';
 		l_size += b_read;
 		line = _realloc(line, o_size, l_size);
@@ -105,7 +104,7 @@ int proc_cmd(char *_path, int *exe_ret)
 	start = args;
 	for (i = 0; args[i]; i++)
 	{
-		if (ncmp_str(args[i], ";", 1) == 0)
+		if (ncmp(args[i], ";", 1) == 0)
 		{
 			free(args[i]);
 			args[i] = NULL;

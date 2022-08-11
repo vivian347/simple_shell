@@ -26,10 +26,10 @@ void _signal(int sig)
  * Return: exit val of last executed command
  */
 
-int _exec(char **arg,char **start)
+int _exec(char **arg, char **start)
 {
 	pid_t pid;
-	int stat, flag = 0; ret = 0;
+	int stat, flag = 0, ret = 0;
 	char *cmd = arg[0];
 
 	if (cmd[0] != '/' && cmd[0] != '.')
@@ -37,7 +37,7 @@ int _exec(char **arg,char **start)
 		flag = 1;
 		cmd = _loc(cmd);
 	}
-	if (!cmd || (access(command, F_OK) == -1))
+	if (!cmd || (access(cmd, F_OK) == -1))
 	{
 		if (errno == EACCES)
 			ret = (create_err(arg, 126));
@@ -52,7 +52,7 @@ int _exec(char **arg,char **start)
 			if (flag)
 				free(cmd);
 			perror("Error child:");
-			return(1);
+			return (1);
 		}
 		if (pid == 0)
 		{
@@ -61,7 +61,7 @@ int _exec(char **arg,char **start)
 				ret = (create_err(arg, 126));
 			free_env();
 			free_args(arg, start);
-			free_alias(aliases);
+			aliaslist_free(aliases);
 			_exit(ret);
 		}
 		else
@@ -74,7 +74,6 @@ int _exec(char **arg,char **start)
 		free(cmd);
 	return (ret);
 }
-
 /**
  * main - entry point
  * @argc: argument counter

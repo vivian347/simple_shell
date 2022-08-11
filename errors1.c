@@ -22,7 +22,7 @@ char *e_env(char **arg)
 		return (NULL);
 
 	arg--;
-	length = get_len(name) + get_len(hist_str) _ get_len(arg[0]) + 45;
+	length = get_len(name) + get_len(hist_str) + get_len(arg[0]) + 45;
 	err = malloc(sizeof(char) * (length + 1));
 	if (!err)
 	{

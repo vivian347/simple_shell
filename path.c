@@ -58,11 +58,11 @@ char *fill_path(char *path)
 	char *path_cpy, *pwd;
 
 	pwd = (*getenv_fnc("PWD")) + 4;
-	for (i = 0; path[i]; i++);
+	for (i = 0; path[i]; i++)
 	{
 		if (path[i] == ':')
 		{
-			if (path[i + 1] == ':' || i = 0 || path[i +1] == '\0')
+			if (path[i + 1] == ':' || i = 0 || path[i + 1] == '\0')
 				len = get_len(pwd) + 1;
 			else
 				len++;
@@ -76,7 +76,7 @@ char *fill_path(char *path)
 	path_cpy[0] = '\0';
 	for (i = 0; path[i]; i++)
 	{
-		if (path[i] ==':')
+		if (path[i] == ':')
 		{
 			if (i == 0)
 			{
@@ -106,7 +106,7 @@ char *fill_path(char *path)
  * Return: pointer to initialize linkedlist
  */
 
-list_t *get_path(get_path)
+list_t *get_path(char *path)
 {
 	int i;
 	char **dirs, *path_cpy;
@@ -126,5 +126,5 @@ list_t *get_path(get_path)
 	}
 	free(dirs);
 
-	return(head);
+	return (head);
 }
