@@ -5,7 +5,6 @@ char *cpy_str(char *str1, const char *str2);
 char *cat_str(char *str1, const char *str2);
 char *ncat_str(char *str1, const char *str2, size_t n);
 
-
 /**
  * get_len - gets length of string
  * @s: pointer to string
@@ -76,12 +75,11 @@ char *cat_str(char *str1, const char *str2)
 char *ncat_str(char *str1, const char *str2, size_t n)
 {
 	int len = get_len(str1);
-	int i;
+	size_t i;
 
 	for (i = 0; i < n && str2[i] != '\0'; i++)
-		str2[len + i] = str2[i];
+		str1[len + i] = str2[i];
 	str1[len + i] = '\0';
 
 	return (str1);
 }
-
