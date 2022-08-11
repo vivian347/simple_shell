@@ -27,33 +27,43 @@ typedef struct list_s
 } list_t;
 
 /**
- * @brief 
- * 
+ * struct builtin_s - A new struct type defining builtin commands.
+ * @name: The name of the builtin command.
+ * @f: A function pointer to the builtin command's function.
  */
 typedef struct builtin_s
 {
 	char *name;
-	int (*f)(char **argv, char **start);
+	int (*f)(char **argv, char **front);
 } builtin_t;
+
 /**
  * struct alias_s - A new struct defining aliases.
  * @name: The name of the alias.
-@@ -45,22 +54,22 @@ typedef struct alias_s
+ * @value: The value of the alias.
+ * @next: A pointer to another struct alias_s.
+ */
+typedef struct alias_s
+{
+	char *name;
+	char *value;
+	struct alias_s *next;
+} alias_t;
 
 alias_t *aliases;
 
-int alias_shell(char **args, char _attribute((unused_)) **start);
-int alias_shell(char **args, char __attribute__((__unused__)) **start);
+int alias_shell(char **args, char _attribute((unused_)) * *start);
+int alias_shell(char **args, char __attribute__((__unused__)) * *start);
 void alias_prt(alias_t *alias);
 char *alias_rep(char **args);
 char **alias_rep(char **args);
 void al_set(char *name, char *val);
 int _exit(char **args, char **start);
-int help(char **args, char __attribute((unused_)) **start);
-int cd(char **args, char __attribute((unused_)) **start);
+int help(char **args, char __attribute((unused_)) * *start);
+int cd(char **args, char __attribute((unused_)) * *start);
 int exit_fn(char **args, char **start);
-int help(char **args, char __attribute__((__unused__)) **start);
-int cd(char **args, char __attribute__((__unused__)) **start);
+int help(char **args, char __attribute__((__unused__)) * *start);
+int cd(char **args, char __attribute__((__unused__)) * *start);
 int (*getcmd_builtin(char *cmd))(char **args, char **start);
 int get_len(const char *s);
 char *cpy_str(char *str1, const char *str2);
@@ -73,9 +83,9 @@ void h_help(void);
 void h_env(void);
 void h_setenv(void);
 void h_unsetenv(void);
-int _env(char **args, char __attribute__((__unused__)) **start);
-int _setenv(char **args, char __attribute__((__unused__)) **start);
-int _unsetenv(char **args, char __attribute__((__unused__)) **start);
+int _env(char **args, char __attribute__((__unused__)) * *start);
+int _setenv(char **args, char __attribute__((__unused__)) * *start);
+int _unsetenv(char **args, char __attribute__((__unused__)) * *start);
 char **getenv_fnc(const char *env_var);
 char **env_cpy(void);
 void free_env(void);
