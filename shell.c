@@ -122,11 +122,11 @@ int main(int argc, char *argv[])
 			if (ret == END_OF_FILE)
 				write(STDOUT_FILENO, new_line, 1);
 			free_env();
-			free_alias(aliases);
+			aliaslist_free(aliases);
 			exit(*exe_ret);
 		}
 	}
 	free_env();
-	free_alias(aliases);
+	aliaslist_free(aliases);
 	return (*exe_ret);
 }

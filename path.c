@@ -115,6 +115,11 @@ list_t *get_path(char *path)
 	path_cpy = fill_path(path);
 	if (!path_cpy)
 		return (NULL);
+	dirs = strtok_fnc(path_cpy, ":");
+	free(path_cpy);
+	if (!dirs)
+		return (NULL);
+
 	for (i = 0; dirs[i]; i++)
 	{
 		if (endnode_add(&head, dirs[i]) == NULL)
