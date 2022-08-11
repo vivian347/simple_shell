@@ -62,7 +62,7 @@ char *fill_path(char *path)
 	{
 		if (path[i] == ':')
 		{
-			if (path[i + 1] == ':' || i = 0 || path[i + 1] == '\0')
+			if (path[i + 1] == ':' || i == 0 || path[i + 1] == '\0')
 				len = get_len(pwd) + 1;
 			else
 				len++;

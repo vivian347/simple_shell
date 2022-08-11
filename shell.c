@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
 		while (ret != END_OF_FILE && ret != EXIT)
 			ret = cmd_handler(exe_ret);
 		free_env();
-		free_alias(aliases);
+		aliaslist_free(aliases);
 		return (*exe_ret);
 	}
 
