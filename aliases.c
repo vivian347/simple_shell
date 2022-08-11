@@ -2,8 +2,7 @@
 
 int alias_shell(char **args, char __attribute__((__unused__)) **start);
 void alias_prt(alias_t *alias);
-char **alias_rep(char **args);
-void al_set(char *name, char *val);
+void al_set(char *name_var, char *val);
 
 /**
  * alias_shell - prints and sets alias
@@ -52,11 +51,11 @@ int alias_shell(char **args, char __attribute__((__unused__)) **start)
 
 /**
  * al_set - sets an alias
- * @name: name of alias 
+ * @name_var: name of alias 
  * @val: value of alias
  * Return: void
  */
-void al_set(char *name, char *val)
+void al_set(char *name_var, char *val)
 {
     int i, j, len;
     char *val_new;
@@ -73,10 +72,10 @@ void al_set(char *name, char *val)
         if (val[i] != '\'' && val[i] != '"')
             val_new[j++] = val[i];
     }
-    val_new = '\0';
+    val_new[j] = '\0';
     while (ptr)
     {
-        if (cmp(name, ptr->name) == 0)
+        if (cmp(name_var, ptr->name) == 0)
         {
             free(ptr->value);
             ptr->value = val_new;
@@ -85,7 +84,7 @@ void al_set(char *name, char *val)
         ptr = ptr->next;
     }
     if (!ptr)
-        endalias_add(&aliases, name, val_new);
+        endalias_add(&aliases, name_var, val_new);
 }
 
 /**
