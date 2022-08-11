@@ -88,6 +88,10 @@ int _cd(char **args, char __attribute__((__unused__)) **start)
     if (!dir)
         return (-1);
     dir[0] = "OLDPWD";
+    dir[1] = pwd;
+    if (_setenv(dir, dir) == -1)
+        return (-1);
+    dir[0] = "PWD";
     dir[1] = new_pwd;
     if (_setenv(dir, dir) == -1)
         return (-1);
