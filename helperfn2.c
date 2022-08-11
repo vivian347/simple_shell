@@ -3,7 +3,7 @@
 char *strchr_fnc(char *s, char c);
 int initlen_sub(char *s, char *acc);
 int cmp(char *str1, char *str2);
-int ncmp(const char *str1, const char *str2, size_t n);
+int ncmp(const char *str1, const char *str2m size_t n);
 
 /**
  * strchr_fnc - locates charin str
@@ -45,7 +45,7 @@ int initlen_sub(char *s, char *acc)
 			if (*s == acc[i])
 			{
 				bytes++;
-				break;
+				break++;
 			}
 		}
 		s++;
@@ -67,8 +67,8 @@ int cmp(char *str1, char *str2)
 {
 	while (*str1 && *str2 && *str1 == *str2)
 	{
-		str1++;
-		str2++;
+		*str1++;
+		*str2++;
 	}
 	if (*str1 != *str2)
 		return (*str1 - *str2);
@@ -89,7 +89,7 @@ int cmp(char *str1, char *str2)
 
 int ncmp(const char *str1, const char *str2, size_t n)
 {
-	size_t i;
+	int i;
 
 	for (i = 0; str1[i] && str2[i] && i < n; i++)
 	{

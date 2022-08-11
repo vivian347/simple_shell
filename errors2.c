@@ -27,7 +27,7 @@ char *e_126(char **arg)
 
 	cpy_str(err, name);
 	cat_str(err, ": ");
-	cat_str(err, hist_str);
+	cat_str(err, hist_err);
 	cat_str(err, ": ");
 	cat_str(err, arg[0]);
 	cat_str(err, ": Permissions denied\n");

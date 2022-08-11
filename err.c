@@ -75,26 +75,26 @@ int create_err(char **arg, int error)
 
 	switch (error)
 	{
-	case -1:
-		err = e_env(arg);
-		break;
-	case 1:
-		err = e_1(arg);
-		break;
-	case 2:
-		if (*(arg[0]) == 'e')
-			err = e_2_exit(++arg);
-		else if (arg[0][0] == ';' || arg[0][0] == '&' || arg[0][0] == '|')
-			err = e_2_syntax(arg);
-		else
-			err = e_2_cd(arg);
-		break;
-	case 126:
-		err = e_126(arg);
-		break;
-	case 127:
-		err = e_127(arg);
-		break;
+		case -1:
+			err = e_env(arg);
+			break;
+		case 1:
+			err = e_1(arg);
+			break;
+		case 2:
+			if (*(arg[0] == 'e'))
+				err = e_2_exit(++arg);
+			else if (arg[0][0] == ';' || arg[0][0] == '&' || arg[0][0] == '|')
+				err = e_2_syntax(arg);
+			else
+				err = e_2_cd(arg);
+			break;
+		case 126:
+			err = e_126(arg);
+			break;
+		case 127:
+			err = e_127(arg);
+			break;
 	}
 	write(STDERR_FILENO, err, get_len(err));
 
