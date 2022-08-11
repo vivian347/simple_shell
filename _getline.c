@@ -24,12 +24,12 @@ void *_realloc(void *p, unsigned int o_size, unsigned int n_size)
 	if (p == NULL)
 	{
 		mem = malloc(n_size);
-		if (!mem)
+		if (mem == NULL)
 			return (NULL);
 
 		return (mem);
 	}
-	if (n_size == 0 && !p)
+	if (n_size == 0 && p != NULL)
 	{
 		free(p);
 		return (NULL);
@@ -44,8 +44,8 @@ void *_realloc(void *p, unsigned int o_size, unsigned int n_size)
 	}
 	filler = mem;
 
-	for (i = 0; i < o_size && i < n_size; i++);
-	filler[i] = *p_cpy++;
+	for (i = 0; i < o_size && i < n_size; i++)
+		filler[i] = *p_cpy++;
 
 	free(p);
 	return (mem);

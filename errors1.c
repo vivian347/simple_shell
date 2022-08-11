@@ -55,7 +55,7 @@ char *e_1(char **arg)
 
 	length = get_len(name) + get_len(arg[0]) + 13;
 	err = malloc(sizeof(char) * (length + 1));
-	if (err == NULL)
+	if (!err)
 	{
 		return (NULL);
 	}

@@ -56,6 +56,7 @@ typedef struct alias_s
 alias_t *aliases;
 
 int alias_shell(char **args, char __attribute__((__unused__)) * *start);
+int alias_shell(char **args, char __attribute__((__unused__)) * *start);
 char **alias_rep(char **args);
 int exit_fn(char **args, char **start);
 int help(char **args, char __attribute__((__unused__)) * *start);

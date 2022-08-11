@@ -1,6 +1,5 @@
 #include "shell.h"
 
-char *_loc(char *cmd);
 char *fill_path(char *path);
 list_t *get_path(char *path);
 

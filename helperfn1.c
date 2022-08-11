@@ -18,8 +18,8 @@ int get_len(const char *s)
 
 	if (!s)
 		return (len);
-	for (len = 0; s[len];)
-		len++;
+	for (len = 0; s[len]; len++)
+		;
 	return (len);
 }
 
