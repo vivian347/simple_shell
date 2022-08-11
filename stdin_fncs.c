@@ -130,11 +130,11 @@ int check_cmd(char **args)
             || current[0] == '|')
         {
             if (i == 0 || current[1] == ';')
-                return (gen_error(&args[i], 2));
+                return (create_err(&args[i], 2));
             fol = args[i + 1];
             if (fol && (fol[0] == ';' || fol[0] == '&'
                 || fol[0] == '|'))
-                return (gen_error(&args[i + 1], 2));
+                return (create_err(&args[i + 1], 2));
         }
     }
     return (0);

@@ -39,10 +39,10 @@ int _setenv(char **args, char __attribute__((__unused__)) **start)
     size_t n;
 
     if (!args[0] || !args[1])
-        return (gen_error(args, -1));
+        return (create_err(args, -1));
     val_new = malloc(get_len(args[0]) + 1 + get_len(args[1]) + 1);
     if (!val_new)
-        return (gen_error(args, -1));
+        return (create_err(args, -1));
     cpy_str(val_new, args[0]);
     cat_str(val_new, "=");
     cat_str(val_new, args[1]);
@@ -59,7 +59,7 @@ int _setenv(char **args, char __attribute__((__unused__)) **start)
     if (!env_new)
     {
         free(val_new);
-        return (gen_error(args, -1));
+        return (create_err(args, -1));
     }
     for (i = 0; environ[i]; i++)
         env_new[i] = environ[i];
@@ -83,7 +83,7 @@ int _unsetenv(char **args, char __attribute__((__unused__)) **start)
     size_t n;
 
     if (!args[0])
-        return (gen_error(args, -1));
+        return (create_err(args, -1));
     env = getenv_fnc(args[0]);
     if (!env)
         return (0);
@@ -91,7 +91,7 @@ int _unsetenv(char **args, char __attribute__((__unused__)) **start)
         ;
     env_new = malloc(sizeof(char *) * n);
     if (!env_new)
-        return (gen_error(args, -1));
+        return (create_err(args, -1));
     for (i = 0, j = 0; environ[i]; i++)
     {
         if (*env == environ[i])

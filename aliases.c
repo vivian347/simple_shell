@@ -42,7 +42,7 @@ int alias_shell(char **args, char __attribute__((__unused__)) **start)
                 ptr = ptr->next;
             }
             if (!ptr)
-                rtn = gen_error(args + i, 1);
+                rtn = create_err(args + i, 1);
         }
         else
             al_set(args[i], val);

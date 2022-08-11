@@ -40,9 +40,9 @@ int _exec(char **arg,char **start)
 	if (!cmd || (access(command, F_OK) == -1))
 	{
 		if (errno == EACCES)
-			ret = (gen_error(arg, 126));
+			ret = (create_err(arg, 126));
 		else
-			ret = (gen_error(arg, 127));
+			ret = (create_err(arg, 127));
 	}
 	else
 	{
@@ -58,7 +58,7 @@ int _exec(char **arg,char **start)
 		{
 			execve(command, arg, environ);
 			if (errno == EACCES)
-				ret = (get_error(arg, 126));
+				ret = (create_err(arg, 126));
 			free_env();
 			free_args(arg, start);
 			free_alias(aliases);

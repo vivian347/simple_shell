@@ -61,7 +61,7 @@ int _cd(char **args, char __attribute__((__unused__)) **start)
             else
             {
                 free(pwd);
-                return (gen_error(args, 2));
+                return (create_err(args, 2));
             }
         }
         else
@@ -72,7 +72,7 @@ int _cd(char **args, char __attribute__((__unused__)) **start)
             else
             {
                 free(pwd);
-                return (gen_error(args, 2));
+                return (create_err(args, 2));
             }
         }
     }
@@ -155,7 +155,7 @@ int _exit(char **args, char **start)
                 && args[0][i] <= '9')
                 val = (val * 10) + (args[0][i] - '0');
             else
-                return (gen_error(--args, 2));
+                return (create_err(--args, 2));
         }
     }
     else
@@ -163,7 +163,7 @@ int _exit(char **args, char **start)
         return (-3);
     }
     if (val > max_val - 1)
-        return (gen_error(--args, 2));
+        return (create_err(--args, 2));
     args -= 1;
     free_args(args, start);
     free_env();
