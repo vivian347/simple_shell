@@ -55,12 +55,12 @@ typedef struct alias_s
 
 alias_t *aliases;
 
-int alias_shell(char **args, char __attribute__((__unused__)) * *start);
-int alias_shell(char **args, char __attribute__((__unused__)) * *start);
+int alias_shell(char **args, char __attribute__((__unused__)) **start);
+int alias_shell(char **args, char __attribute__((__unused__)) **start);
 char **alias_rep(char **args);
 int exit_fn(char **args, char **start);
-int help(char **args, char __attribute__((__unused__)) * *start);
-int cd(char **args, char __attribute__((__unused__)) * *start);
+int help(char **args, char __attribute__((__unused__)) **start);
+int cd(char **args, char __attribute__((__unused__)) **start);
 int (*getcmd_builtin(char *cmd))(char **args, char **start);
 int get_len(const char *s);
 char *cpy_str(char *str1, const char *str2);
@@ -78,9 +78,9 @@ void h_help(void);
 void h_env(void);
 void h_setenv(void);
 void h_unsetenv(void);
-int _env(char **args, char __attribute__((__unused__)) * *start);
-int _setenv(char **args, char __attribute__((__unused__)) * *start);
-int _unsetenv(char **args, char __attribute__((__unused__)) * *start);
+int _env(char **args, char __attribute__((__unused__)) **start);
+int _setenv(char **args, char __attribute__((__unused__)) **start);
+int _unsetenv(char **args, char __attribute__((__unused__)) **start);
 char **getenv_fnc(const char *env_var);
 char **env_cpy(void);
 void free_env(void);

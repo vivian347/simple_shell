@@ -1,6 +1,6 @@
 #include "shell.h"
 
-int alias_shell(char **args, char __attribute__((__unused__)) * *start);
+int alias_shell(char **args, char __attribute__((__unused__)) **start);
 void alias_prt(alias_t *alias);
 void al_set(char *name_var, char *val);
 
@@ -10,13 +10,12 @@ void al_set(char *name_var, char *val);
  * @start: points to begin of args
  * Return: -1 on error 0 on success
  */
-int alias_shell(char **args, char __attribute__((__unused__)) * *start)
+int alias_shell(char **args, char __attribute__((__unused__)) **start)
 {
 	int rtn = 0, i;
 	char *val;
 	alias_t *ptr = aliases;
 
-<<<<<<< HEAD
 	if (!args[0])
 	{
 		while (ptr)
@@ -48,39 +47,6 @@ int alias_shell(char **args, char __attribute__((__unused__)) * *start)
 			al_set(args[i], val);
 	}
 	return (rtn);
-=======
-    if (!args[0])
-    {
-        while (ptr)
-        {
-            alias_prt(ptr);
-            ptr = ptr->next;
-        }
-        return (rtn);
-    }
-    for (i = 0; args[i]; i++)
-    {
-        ptr = aliases;
-        val = strchr_fnc(args[i], '=');
-        if (!val)
-        {
-            while (ptr)
-            {
-                if (cmp(args[i], ptr->name) == 0)
-                {
-                    alias_prt(ptr);
-                    break;
-                }
-                ptr = ptr->next;
-            }
-            if (!ptr)
-                rtn = create_err(args + i, 1);
-        }
-        else
-            al_set(args[i], val);
-    }
-    return (rtn);
->>>>>>> 9e83d81fc0ee767b76a30d4337defb4abeda30dc
 }
 
 /**
@@ -123,16 +89,11 @@ void al_set(char *name_var, char *val)
 
 /**
  * alias_prt - prints alias
-<<<<<<< HEAD
  * @alias: struct element
-=======
- * @alias:
->>>>>>> 9e83d81fc0ee767b76a30d4337defb4abeda30dc
  * Return: void
  */
 void alias_prt(alias_t *alias)
 {
-<<<<<<< HEAD
 	int len = get_len(alias->name) + get_len(alias->value) + 4;
 	char *ptr;
 
@@ -145,20 +106,6 @@ void alias_prt(alias_t *alias)
 	cat_str(ptr, "'\n");
 	write(STDOUT_FILENO, ptr, len);
 	free(ptr);
-=======
-    int len = get_len(alias->name) + get_len(alias->value) + 4;
-    char *ptr;
-
-    ptr = malloc(sizeof(char) * (len + 1));
-    if (!ptr)
-        return;
-    cpy_str(ptr, alias->name);
-    cat_str(ptr, "='");
-    cat_str(ptr, alias->value);
-    cat_str(ptr, "'\n");
-    write(STDOUT_FILENO, ptr, len);
-    free(ptr);
->>>>>>> 9e83d81fc0ee767b76a30d4337defb4abeda30dc
 }
 
 /**

@@ -136,7 +136,7 @@ int _help(char **args, char __attribute__((__unused__)) **start)
 }
 
 /**
- * _exit - process terminates on call
+ * exit_fn - process terminates on call
  * @args: array of args
  * @start: beginnning of args
  * Return: status value on success
