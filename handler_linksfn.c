@@ -12,15 +12,15 @@ alias_t *endalias_add(alias_t **head, char *identifier, char *val);
  */
 void free_list(list_t *ptr)
 {
-    list_t *n;
+	list_t *n;
 
-    while (ptr)
-    {
-        n = ptr->next;
-        free(ptr->dir);
-        free(ptr);
-        ptr = n;
-    }
+	while (ptr)
+	{
+		n = ptr->next;
+		free(ptr->dir);
+		free(ptr);
+		ptr = n;
+	}
 }
 
 /**
@@ -30,16 +30,16 @@ void free_list(list_t *ptr)
  */
 void aliaslist_free(alias_t *ptr)
 {
-    alias_t *n;
+	alias_t *n;
 
-    while (ptr)
-    {
-        n = ptr->next;
-        free(ptr->name);
-        free(ptr->value);
-        free(ptr);
-        ptr = n;
-    }
+	while (ptr)
+	{
+		n = ptr->next;
+		free(ptr->name);
+		free(ptr->value);
+		free(ptr);
+		ptr = n;
+	}
 }
 /**
  * endnode_add - adds node at end of list_t
@@ -49,7 +49,7 @@ void aliaslist_free(alias_t *ptr)
  */
 list_t *endnode_add(list_t **head, char *dir)
 {
-    list_t *end;
+	list_t *end;
 	list_t *node = malloc(sizeof(list_t));
 
 	if (!node)
@@ -78,7 +78,7 @@ list_t *endnode_add(list_t **head, char *dir)
  */
 alias_t *endalias_add(alias_t **head, char *identifier, char *val)
 {
-    alias_t *end;
+	alias_t *end;
 	alias_t *node = malloc(sizeof(alias_t));
 
 	if (!node)

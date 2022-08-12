@@ -12,85 +12,85 @@ void split_line(char **ptr, ssize_t len);
  */
 void split_line(char **ptr, ssize_t len)
 {
-    size_t i, j;
-    ssize_t len_new;
-    char *line, *line_new, curr;
-    char prev, fol;
+	size_t i, j;
+	ssize_t len_new;
+	char *line, *line_new, curr;
+	char prev, fol;
 
-    len_new = new_len(*ptr);
-    if (len_new == len - 1)
-        return;
-    line_new = malloc(len_new + 1);
-    if (!line_new)
-        return;
-    j = 0;
-    line = *ptr;
-    for (i = 0; line[i]; i++)
-    {
-        curr = line[i];
-        fol = line[i + 1];
-        if (i != 0)
-        {
-            prev = line[i - 1];
-            if (curr == ';')
-            {
-                if (fol == ';' && prev != ' '
-                    && prev != ';')
-                {
-                    line_new[j++] = ' ';
-                    line_new[j++] = ';';
-                    continue;
-                }
-                else if (prev == ';' && fol != ' ')
-                {
-                    line_new[j++] = ';';
-                    line_new[j++] = ' ';
-                    continue;
-                }
-                if (prev != ' ')
-                    line_new[j++] = ' ';
-                line_new[j++] = ';';
-                if (fol != ' ')
-                    line_new[j++] = ' ';
-                continue;
-            }
-            else if (curr == '&')
-            {
-                if (fol == '&' && prev != ' ')
-                    line_new[j++] = ' ';
-                else if (prev == '&' && fol != ' ')
-                {
-                    line_new[j++] = '&';
-                    line_new[j++] = ' ';
-                    continue;
-                }
-            }
-            else if (curr == '|')
-            {
-                if (fol == '|' && prev != ' ')
-                    line_new[j++] = ' ';
-                else if (prev == '|' && fol != ' ')
-                {
-                    line_new[j++] = '|';
-                    line_new[j++] = ' ';
-                    continue;
-                }
-            }
-        }
-        else if (curr == ';')
-        {
-            if (i != 0 && line[i - 1] != ' ')
-                line_new[j++] = ' ';
-            line_new[j++] = ';';
-            if (fol != ' ' && fol != ';')
-                line_new[j++] = ' ';
-            continue;
-        }
-        line_new[j++] = line[i];
-    }
-    line_new[j] = '\0';
-    free(*ptr);
-    *ptr = line_new;
+	len_new = new_len(*ptr);
+	if (len_new == len - 1)
+		return;
+	line_new = malloc(len_new + 1);
+	if (!line_new)
+		return;
+	j = 0;
+	line = *ptr;
+	for (i = 0; line[i]; i++)
+	{
+		curr = line[i];
+		fol = line[i + 1];
+		if (i != 0)
+		{
+			prev = line[i - 1];
+			if (curr == ';')
+			{
+				if (fol == ';' && prev != ' '
+						&& prev != ';')
+				{
+					line_new[j++] = ' ';
+					line_new[j++] = ';';
+					continue;
+				}
+				else if (prev == ';' && fol != ' ')
+				{
+					line_new[j++] = ';';
+					line_new[j++] = ' ';
+					continue;
+				}
+				if (prev != ' ')
+					line_new[j++] = ' ';
+				line_new[j++] = ';';
+				if (fol != ' ')
+					line_new[j++] = ' ';
+				continue;
+			}
+			else if (curr == '&')
+			{
+				if (fol == '&' && prev != ' ')
+					line_new[j++] = ' ';
+				else if (prev == '&' && fol != ' ')
+				{
+					line_new[j++] = '&';
+					line_new[j++] = ' ';
+					continue;
+				}
+			}
+			else if (curr == '|')
+			{
+				if (fol == '|' && prev != ' ')
+					line_new[j++] = ' ';
+				else if (prev == '|' && fol != ' ')
+				{
+					line_new[j++] = '|';
+					line_new[j++] = ' ';
+					continue;
+				}
+			}
+		}
+		else if (curr == ';')
+		{
+			if (i != 0 && line[i - 1] != ' ')
+				line_new[j++] = ' ';
+			line_new[j++] = ';';
+			if (fol != ' ' && fol != ';')
+				line_new[j++] = ' ';
+			continue;
+		}
+		line_new[j++] = line[i];
+	}
+	line_new[j] = '\0';
+	free(*ptr);
+	*ptr = line_new;
 }
 
 /**
@@ -100,55 +100,55 @@ void split_line(char **ptr, ssize_t len)
  */
 ssize_t new_len(char *arg)
 {
-    ssize_t len = 0;
-    size_t i;
-    char curr, fol;
+	ssize_t len = 0;
+	size_t i;
+	char curr, fol;
 
-    for (i = 0; arg[i]; i++)
-    {
-        curr = arg[i];
-        fol = arg[i + 1];
-        if (curr == '#')
-        {
-            if (i == 0 || arg[i - 1] == ' ')
-            {
-                arg[i] = '\0';
-                break;
-            }
-        }
-        else if (i != 0)
-        {
-            if (curr == ';')
-            {
-                if (fol == ';' && arg[i - 1] != ' '
-                    && arg[i - 1] != ';')
-                {
-                    len += 2;
-                    continue;
-                }
-                else if (arg[i - 1] == ';' && fol != ' ')
-                {
-                    len += 2;
-                    continue;
-                }
-                if (arg[i - 1] != ' ')
-                    len++;
-                if (fol != ' ')
-                    len++;
-            }
-            else
-                log_oper(&arg[i], &len);
-        }
-        else if (curr == ';')
-        {
-            if (i != 0 && arg[i - 1] != ' ')
-                len++;
-            if (fol != ' ' && fol != ';')
-                len++;
-        }
-        len++;
-    }
-    return (len);
+	for (i = 0; arg[i]; i++)
+	{
+		curr = arg[i];
+		fol = arg[i + 1];
+		if (curr == '#')
+		{
+			if (i == 0 || arg[i - 1] == ' ')
+			{
+				arg[i] = '\0';
+				break;
+			}
+		}
+		else if (i != 0)
+		{
+			if (curr == ';')
+			{
+				if (fol == ';' && arg[i - 1] != ' '
+						&& arg[i - 1] != ';')
+				{
+					len += 2;
+					continue;
+				}
+				else if (arg[i - 1] == ';' && fol != ' ')
+				{
+					len += 2;
+					continue;
+				}
+				if (arg[i - 1] != ' ')
+					len++;
+				if (fol != ' ')
+					len++;
+			}
+			else
+				log_oper(&arg[i], &len);
+		}
+		else if (curr == ';')
+		{
+			if (i != 0 && arg[i - 1] != ' ')
+				len++;
+			if (fol != ' ' && fol != ';')
+				len++;
+		}
+		len++;
+	}
+	return (len);
 }
 
 /**
@@ -159,23 +159,23 @@ ssize_t new_len(char *arg)
  */
 void log_oper(char *ptr, ssize_t *ptr_new)
 {
-    char fol, curr, prev;
+	char fol, curr, prev;
 
-    fol = *(ptr + 1);
-    prev = *(ptr - 1);
-    curr = *ptr;
-    if (curr == '&')
-    {
-        if (fol == '&' && prev != ' ')
-            (*ptr_new)++;
-        else if (prev == '&' && fol != ' ')
-            (*ptr_new)++;
-    }
-    else if (curr == '|')
-    {
-        if (fol == '|' && prev != ' ')
-            (*ptr_new)++;
-        else if (prev == '|' && fol != ' ')
-            (*ptr_new)++;
-    }
+	fol = *(ptr + 1);
+	prev = *(ptr - 1);
+	curr = *ptr;
+	if (curr == '&')
+	{
+		if (fol == '&' && prev != ' ')
+			(*ptr_new)++;
+		else if (prev == '&' && fol != ' ')
+			(*ptr_new)++;
+	}
+	else if (curr == '|')
+	{
+		if (fol == '|' && prev != ' ')
+			(*ptr_new)++;
+		else if (prev == '|' && fol != ' ')
+			(*ptr_new)++;
+	}
 }
