@@ -19,7 +19,7 @@ void _signal(int sig)
 }
 
 /**
- * execute - execute command in child process
+ * _exec - execute command in child process
  * @arg: arguments
  * @start: pointer to start of arg
  *

@@ -59,8 +59,7 @@ char *itoa_fnc(int n)
 	else
 		num = n;
 	len--;
-	do
-	{
+	do {
 		buf[len] = (num % 10) + '0';
 		num /= 10;
 		len--;
@@ -68,6 +67,12 @@ char *itoa_fnc(int n)
 
 	return (buf);
 }
+/**
+ * create_err - creates error
+ * @arg: argument
+ * @error: error
+ * Return: the  error
+ */
 
 int create_err(char **arg, int error)
 {

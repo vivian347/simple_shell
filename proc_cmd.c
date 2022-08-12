@@ -67,8 +67,7 @@ int proc_cmd(char *_path, int *exe_ret)
 	line = malloc(sizeof(char) * o_size);
 	if (!line)
 		return (-1);
-	do
-	{
+	do {
 		b_read = read(file, buf, 119);
 		if (b_read == 0 && l_size == 0)
 			return (*exe_ret);
