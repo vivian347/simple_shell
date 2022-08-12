@@ -95,15 +95,16 @@ int _unsetenv(char **args, char __attribute__((__unused__)) **start)
 	for (i = 0, j = 0; environ[i]; i++)
 	{
 		if (*env == environ[i])
-	{
-		free(*env);
-		continue;
-		env_new[j] = environ[i];
-		j++;
+		{
+			free(*env);
+			continue;
+			env_new[j] = environ[i];
+			j++;
+		}
+		free(environ);
+		environ = env_new;
+		environ[n - 1] = NULL;
 	}
-	free(environ);
-	environ = env_new;
-	environ[n - 1] = NULL;
 	return (0);
-}
 
+}
