@@ -16,8 +16,8 @@
 #define EXIT -3
 
 extern char **environ;
-extern char *name;
-extern int hist;
+char *name;
+int hist;
 
 /**
  * struct list_s - A new struct type defining a linked list.
@@ -53,7 +53,7 @@ typedef struct alias_s
 	struct alias_s *next;
 } alias_t;
 
-extern alias_t *aliases;
+alias_t *aliases;
 
 int alias_shell(char **args, char __attribute__((__unused__)) * *start);
 int alias_shell(char **args, char __attribute__((__unused__)) * *start);
