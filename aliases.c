@@ -1,6 +1,6 @@
 #include "shell.h"
 
-int alias_shell(char **args, char __attribute__((__unused__)) **start);
+int alias_shell(char **args, char __attribute__((__unused__)) * *start);
 void alias_prt(alias_t *alias);
 void al_set(char *name_var, char *val);
 
@@ -10,7 +10,7 @@ void al_set(char *name_var, char *val);
  * @start: points to begin of args
  * Return: -1 on error 0 on success
  */
-int alias_shell(char **args, char __attribute__((__unused__)) **start)
+int alias_shell(char **args, char __attribute__((__unused__)) * *start)
 {
     int rtn = 0, i;
     char *val;
@@ -46,12 +46,12 @@ int alias_shell(char **args, char __attribute__((__unused__)) **start)
         else
             al_set(args[i], val);
     }
-    return(rtn);
+    return (rtn);
 }
 
 /**
  * al_set - sets an alias
- * @name_var: name of alias 
+ * @name_var: name of alias
  * @val: value of alias
  * Return: void
  */
@@ -89,15 +89,15 @@ void al_set(char *name_var, char *val)
 
 /**
  * alias_prt - prints alias
- * @alias: 
+ * @alias:
  * Return: void
  */
 void alias_prt(alias_t *alias)
 {
     int len = get_len(alias->name) + get_len(alias->value) + 4;
     char *ptr;
-    
-    ptr = malloc(sizeof(char) * (len+ 1));
+
+    ptr = malloc(sizeof(char) * (len + 1));
     if (!ptr)
         return;
     cpy_str(ptr, alias->name);
